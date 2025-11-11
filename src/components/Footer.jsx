@@ -5,9 +5,9 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 relative">
+        <div className="grid grid-cols-3 gap-8 mb-8 relative">
           {/* Left Column - Contact Us */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-start">
             <h3 className="text-xl font-bold mb-4">Contact us</h3>
             <div className="flex gap-6">
               {/* YouTube Icon */}
@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
 
           {/* Vertical Divider - Left */}
-          <div className="hidden md:block absolute left-1/3 top-0 bottom-0 w-px bg-gray-600"></div>
+          <div className="absolute left-1/3 top-0 bottom-0 w-px bg-gray-600"></div>
 
           {/* Center Column - Logo and Developers */}
           <div className="flex flex-col items-center text-center">
@@ -51,10 +51,10 @@ const Footer = () => {
           </div>
 
           {/* Vertical Divider - Right */}
-          <div className="hidden md:block absolute right-1/3 top-0 bottom-0 w-px bg-gray-600"></div>
+          <div className="absolute right-1/3 top-0 bottom-0 w-px bg-gray-600"></div>
 
           {/* Right Column - Partner Logos */}
-          <div className="flex flex-col items-center md:items-end justify-start gap-6">
+          <div className="flex flex-col items-end justify-start gap-6">
             {/* AlmaBetter Logo */}
             <div className="text-center">
               <div className="text-2xl font-bold">
