@@ -15,14 +15,10 @@ const Dashboard = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-50 relative">
-      {/* Hamburger Menu Button - Repositions based on sidebar state */}
+      {/* Hamburger Menu Button - Fixed next to navbar logo */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
-        className={`fixed z-50 p-3 bg-[#c9a8f5] text-white rounded-lg shadow-lg hover:bg-[#b896e8] transition-all duration-500 hover:scale-110 ${
-          sidebarOpen 
-            ? 'top-4 left-4' // Inside sidebar at top when open
-            : 'top-4 left-4' // Top-left corner beside logo when sidebar is closed
-        }`}
+        className="fixed top-6 left-[180px] z-50 p-3 bg-[#c9a8f5] text-white rounded-lg shadow-lg hover:bg-[#b896e8] transition-all duration-300 hover:scale-110"
         aria-label="Toggle Sidebar"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,9 +30,6 @@ const Dashboard = () => {
       <div className={`bg-[#c9a8f5] text-white flex flex-col transition-all duration-500 ease-in-out relative ${
         sidebarOpen ? 'w-72' : 'w-0'
       } overflow-hidden`}>
-        {/* Spacer for hamburger menu when sidebar is open */}
-        {sidebarOpen && <div className="h-16"></div>}
-        
         {/* User Profile Section */}
         <div className="p-6 border-b border-purple-400">
           <div className="flex items-center gap-4 group cursor-pointer hover:bg-purple-300 hover:bg-opacity-30 p-2 rounded-lg transition-all duration-300">
@@ -141,7 +134,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className={`flex-1 p-12 transition-all duration-500 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
+      <div className="flex-1 p-12 overflow-auto">
         {/* Welcome Header */}
         <div className="mb-8">
           <h1 className="text-5xl font-bold text-black mb-3">Welcome, Guest !</h1>

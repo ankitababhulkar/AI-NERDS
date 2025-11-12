@@ -938,7 +938,7 @@ const AIFlowStepsAnimated = () => {
       gradient: 'from-green-400 to-green-500',
       icon: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z',
       text: 'Upload your resume once — let AI analyze your skills and experience.',
-      align: 'start',
+      align: 'left', // First box on left
       delay: 0.2
     },
     {
@@ -946,7 +946,7 @@ const AIFlowStepsAnimated = () => {
       gradient: 'from-blue-500 to-purple-600',
       icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
       text: 'Get AI-filtered job recommendations from LinkedIn, Naukri & more.',
-      align: 'end',
+      align: 'right', // Second box on right
       delay: 0.4
     },
     {
@@ -954,7 +954,7 @@ const AIFlowStepsAnimated = () => {
       gradient: 'from-purple-500 to-pink-600',
       icon: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z',
       text: 'Improve your resume with ATS score insights and tailored suggestions.',
-      align: 'start',
+      align: 'left', // Third box on left
       delay: 0.6
     },
     {
@@ -962,7 +962,7 @@ const AIFlowStepsAnimated = () => {
       gradient: 'from-red-500 to-orange-500',
       icon: 'M12 2A3 3 0 0 1 15 5v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V5a3 3 0 0 1 3-3m7 9c0 3.53-2.61 6.44-6 6.93V21h-2v-3.07c-3.39-.49-6-3.4-6-6.93h2a5 5 0 0 0 5 5 5 5 0 0 0 5-5h2z',
       text: 'Prepare with AI — practice interviews and enhance communication.',
-      align: 'end',
+      align: 'right', // Fourth box on right
       delay: 0.8
     }
   ]
@@ -981,49 +981,63 @@ const AIFlowStepsAnimated = () => {
             transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
           />
 
-          {/* Animated Steps */}
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.id}
-              className={`relative mb-12 flex justify-${step.align}`}
-              initial={{ 
-                opacity: 0,
-                x: step.align === 'start' ? -100 : 100,
-                y: 20
-              }}
-              animate={isInView ? {
-                opacity: 1,
-                x: 0,
-                y: 0
-              } : {
-                opacity: 0,
-                x: step.align === 'start' ? -100 : 100,
-                y: 20
-              }}
-              transition={{
-                duration: 0.6,
-                delay: step.delay,
-                ease: [0.25, 0.1, 0.25, 1],
-                repeat: Infinity,
-                repeatDelay: 2
-              }}
-            >
-              <motion.div 
-                className={`relative z-10 bg-gradient-to-r ${step.gradient} text-white px-8 py-4 rounded-2xl shadow-lg max-w-xl`}
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex items-center gap-3">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d={step.icon}/>
-                  </svg>
-                  <p className="text-lg font-semibold">
-                    {step.text}
-                  </p>
+          {/* Animated Steps - Zigzag Pattern with Horizontal Connectors */}
+          <div className="relative">
+            {steps.map((step, index) => (
+              <div key={step.id} className="relative mb-16">
+                {/* Horizontal Connector Line from box to center */}
+                <motion.div
+                  className={`absolute top-1/2 ${step.align === 'right' ? 'right-1/2 left-0' : 'left-1/2 right-0'} h-0.5 bg-gray-600 transform -translate-y-1/2 z-0`}
+                  initial={{ scaleX: 0, transformOrigin: step.align === 'right' ? 'right' : 'left' }}
+                  animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                  transition={{ duration: 0.5, delay: step.delay + 0.3, ease: 'easeOut' }}
+                />
+                
+                {/* Container for zigzag layout */}
+                <div className={`flex items-center ${step.align === 'right' ? 'justify-end' : 'justify-start'}`}>
+                  <motion.div
+                    className={`w-1/2 ${step.align === 'right' ? 'pl-8' : 'pr-8'}`}
+                    initial={{ 
+                      opacity: 0,
+                      x: step.align === 'right' ? 100 : -100,
+                      y: 20
+                    }}
+                    animate={isInView ? {
+                      opacity: 1,
+                      x: 0,
+                      y: 0
+                    } : {
+                      opacity: 0,
+                      x: step.align === 'right' ? 100 : -100,
+                      y: 20
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      delay: step.delay,
+                      ease: [0.25, 0.1, 0.25, 1],
+                      repeat: Infinity,
+                      repeatDelay: 2
+                    }}
+                  >
+                    <motion.div 
+                      className={`relative z-10 bg-gradient-to-r ${step.gradient} text-white px-8 py-4 rounded-2xl shadow-lg`}
+                      whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d={step.icon}/>
+                        </svg>
+                        <p className="text-base font-semibold leading-snug">
+                          {step.text}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </motion.div>
                 </div>
-              </motion.div>
-            </motion.div>
-          ))}
+              </div>
+            ))}
+          </div>
 
           {/* AI Icon at Bottom - Animated */}
           <motion.div 
