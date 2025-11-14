@@ -261,4 +261,37 @@ iew page specific animations */
 
 .success-pulse {
   animation: successPulse 1s ease-out;
+}/* Li
+ne clamp utilities for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Image hover effects for news cards */
+.news-card-image {
+  transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-card-image {
+  transform: scale(1.05);
+}
+
+/* Enhanced card hover effects */
+.news-card {
+  transition: all 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }

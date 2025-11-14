@@ -20,32 +20,38 @@ const AINews = () => {
     {
       title: 'OpenAI Releases GPT-4 Turbo with Enhanced Coding Capabilities',
       description: 'The latest update brings improved code generation and debugging features for developers.',
-      link: '#'
+      url: '#',
+      urlToImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop&crop=center'
     },
     {
       title: 'Remote Work Trends: 73% of Companies Plan to Hire Remote Developers in 2024',
       description: 'New survey reveals the growing demand for remote software engineering positions.',
-      link: '#'
+      url: '#',
+      urlToImage: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop&crop=center'
     },
     {
       title: 'GitHub Copilot X: AI-Powered Code Reviews and Pull Request Summaries',
       description: 'GitHub introduces new AI features to streamline the development workflow.',
-      link: '#'
+      url: '#',
+      urlToImage: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=400&h=300&fit=crop&crop=center'
     },
     {
       title: 'Frontend Developer Salaries Rise 15% in 2024 Amid AI Integration',
       description: 'Companies are paying premium for developers skilled in AI-assisted development.',
-      link: '#'
+      url: '#',
+      urlToImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center'
     },
     {
       title: 'Microsoft Announces AI-Powered Interview Assistant for Recruiters',
       description: 'New tool helps recruiters assess technical skills more effectively.',
-      link: '#'
+      url: '#',
+      urlToImage: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop&crop=center'
     },
     {
       title: 'The Rise of AI Code Assistants: How They\'re Changing Development',
       description: 'Analysis of how AI tools are transforming the software development landscape.',
-      link: '#'
+      url: '#',
+      urlToImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=300&fit=crop&crop=center'
     }
   ]
 
@@ -106,33 +112,44 @@ const AINews = () => {
           </p>
         </div>
 
-        {/* News Cards Grid with Staggered Animation */}
-        <div className="grid grid-cols-2 gap-6 max-w-5xl mx-auto mb-20">
+        {/* News Cards Grid with Images */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
           {newsArticles.map((article, index) => (
             <div 
               key={index}
-              className={`bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] group cursor-pointer border border-transparent hover:border-[#e85d75]/20 ${
+              className={`bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] group cursor-pointer border border-transparent hover:border-[#e85d75]/20 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{
                 transitionDelay: `${index * 150}ms`
               }}
             >
-              <h3 className="text-xl font-bold text-black mb-4 leading-tight group-hover:text-[#e85d75] transition-colors duration-300">
-                {article.title}
-              </h3>
-              <p className="text-gray-700 text-base mb-6 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
-                {article.description}
-              </p>
-              <a 
-                href={article.link}
-                className="inline-flex items-center text-[#e85d75] font-semibold text-lg hover:text-[#d94967] transition-all duration-300 group-hover:translate-x-1"
-              >
-                Read More
-                <svg className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
+              {article.urlToImage && (
+                <img
+                  src={article.urlToImage}
+                  alt={article.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              )}
+              <div className="p-6 flex flex-col justify-between h-60">
+                <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-[#e85d75] transition-colors duration-300 mb-3">
+                  {article.title}
+                </h3>
+                <p className="text-sm text-gray-600 mt-2 line-clamp-3 group-hover:text-gray-700 transition-colors duration-300 flex-grow">
+                  {article.description || "No description available."}
+                </p>
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center text-[#e85d75] font-medium hover:text-[#d94967] transition-all duration-300 group-hover:translate-x-1"
+                >
+                  Read more
+                  <svg className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
             </div>
           ))}
         </div>

@@ -15,17 +15,6 @@ const Dashboard = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-50 relative">
-      {/* Hamburger Menu Button - Fixed next to navbar logo */}
-      <button
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-        className="fixed top-6 left-[180px] z-50 p-3 bg-[#c9a8f5] text-white rounded-lg shadow-lg hover:bg-[#b896e8] transition-all duration-300 hover:scale-110"
-        aria-label="Toggle Sidebar"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
       {/* Left Sidebar - Purple Background */}
       <div className={`bg-[#c9a8f5] text-white flex flex-col transition-all duration-500 ease-in-out relative ${
         sidebarOpen ? 'w-72' : 'w-0'
@@ -134,16 +123,6 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content Area */}
-<<<<<<< HEAD
-      <div className="flex-1 p-12 overflow-auto">
-        {/* Welcome Header */}
-        <div className="mb-8">
-          <h1 className="text-5xl font-bold text-black mb-3">Welcome, Guest !</h1>
-          <p className="text-lg text-gray-700">
-            Find personalized job recommendations tailored to your skills. Upload your <span className="font-semibold">resume</span> and watch our AI do it's magic.
-          </p>
-        </div>
-=======
       <div className={`flex-1 p-12 transition-all duration-500 ${sidebarOpen ? 'ml-0' : 'ml-0'}`}>
         {/* Conditional Content Based on Active Tab */}
         {activeTab === 'ats-review' ? (
@@ -161,7 +140,6 @@ const Dashboard = () => {
                 Find personalized job recommendations tailored to your skills. Upload your <span className="font-semibold">resume</span> and watch our AI do it's magic.
               </p>
             </div>
->>>>>>> a5f06fd (Updated pages and styles)
 
         {/* Search Section */}
         <div className="bg-gray-800 rounded-2xl p-8 mb-8">
